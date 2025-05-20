@@ -33,9 +33,38 @@ baseline-behavior-models/
 │ ├── loocv_predictions_last600.png
 │ ├── gee_pred_vs_actual_first600.png
 │ ├── gee_pred_vs_actual_last600.png
-│
 ├── baseline_models.ipynb # Jupyter notebook containing all model code
 ├── requirements.txt
 ├── .gitignore
 ├── LICENSE
 └── README.md
+
+---
+
+## Model Overview
+
+### 1. LOOCV Linear Regression
+- Predicts freezing using leave-one-animal-out CV
+- Models are trained on animal-averaged features
+- Evaluated using R²
+
+### 2. Standard Linear Regression
+- Uses all animals to train one model per segment
+- Reports adjusted R²
+- Outputs unstandardized and standardized beta coefficients, p-values
+
+### 3. GEE (Neuron-Level)
+- Predicts freezing % using neuron-level features
+- Groups neurons by `"Unique ID"` to account for intra-animal correlation
+- Correctly handles repeated measures per animal
+
+---
+
+## Requirements
+
+Install required packages:
+
+```bash
+pip install -r requirements.txt
+
+
